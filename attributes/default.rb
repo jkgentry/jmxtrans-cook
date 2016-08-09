@@ -1,0 +1,14 @@
+# default['jmxtrans']['install_prefix'] = '/opt'
+# default['jmxtrans']['java_home'] = '/usr/bin/java'
+default['jmxtrans']['home'] = '/opt/jmxtrans' # "#{default['jmxtrans']['install_prefix']}/jmxtrans" /usr/share/jmxtrans/bin/jmxtrans
+default['jmxtrans']['json_dir'] = '/opt/jmxtrans/json'
+default['jmxtrans']['log_dir'] = '/var/log/jmxtrans'
+default['jmxtrans']['user'] = 'jmxtrans'
+# default['jmxtrans']['url'] = 'https://github.com/downloads/jmxtrans/jmxtrans/jmxtrans-20120525-210643-4e956b1144.zip'
+# default['jmxtrans']['checksum'] = '0a5a2c361cc666f5a7174e2c77809e1a973c3af62868d407c68beb892f1b0217'
+# default['jmxtrans']['heap_size'] = '512'
+# default['jmxtrans']['jmxtrans_opts'] = nil
+default['jmxtrans']['run_interval'] = '60'
+default['jmxtrans']['log_level'] = 'debug'
+# default['jmxtrans']['graphite']['host'] = 'graphite'
+# default['jmxtrans']['graphite']['port'] = '2003'

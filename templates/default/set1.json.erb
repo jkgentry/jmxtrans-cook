@@ -1,0 +1,47 @@
+
+{
+ "servers": [
+
+<% @servers.each_with_index do |server,index| -%>
+<% unless index == 0 -%>
+   ,
+<% end -%>
+  {
+   "numQueryThreads": <%= server['numQueryThreads'] || 2 %>,
+   "host": "<%= server['name'] %>",
+   "alias": "<%= server['alias'] %>",
+   "username": "<%= server['username'] %>",
+   "password": "<%= server['password'] %>",
+   "port": <%= server['port'] %>,
+   "queries": [
+    <% server['queries'].each_with_index do |query,index| -%>
+        <% unless index == 0 -%>
+        ,
+        <% end -%>
+    {
+      "resultAlias": "<%= query['result_alias'] %>",
+      "obj": "<%= query['obj'] %>",
+      "attr": [<%= query['attr'].map {|t| "\""+t.to_s+"\""}.join(', ') %>],
+     "outputWriters": [
+     <% query['output_writers'].each_with_index do |output_writer,index| -%>
+         <% unless index == 0 -%>
+         ,
+         <% end -%>
+      {
+       "@class": <%= output_writer['class'] %>,
+       "settings": {
+        "typeNames": <%= if query.has_key?('type_name') then query['type_name'].to_s else [ "name" ] end%>,
+        "host": "<%= @graphite_host %>",
+        "port": <%= @graphite_port %>,
+        "rootPrefix": "<%= @root_prefix %>"
+       }
+      }
+      <% end -%>
+     ]
+    }
+    <% end -%>
+    ]
+ }
+<% end -%>
+]
+}
