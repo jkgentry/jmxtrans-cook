@@ -1,6 +1,5 @@
 require 'chefspec'
 require 'chefspec/berkshelf'
-require_relative './support/matchers.rb'
 
 RSpec.configure do |config|
     config.cookbook_path = '../'
